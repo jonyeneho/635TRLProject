@@ -1,0 +1,17 @@
+/.DS_Store
+/AllTRLPJAppTests.class
+/BorrowInController.class
+/BorrowOutController.class
+/CheckInTests.class
+/CheckOutTests.class
+/Copy.class
+/CopyPatronStore.class
+/CopyTests.class
+/DateTests.class
+/Patron.class
+/SalesController.class
+/TRLPJApp.class
+/FetchPatronsTest.class
+/MainMenuTest.class
+/PatronTests.class
+/PayFinesTest.class
