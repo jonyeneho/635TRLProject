@@ -1,18 +1,16 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class BorrowInController {
-	private PatronStore pStore;
-	private CopyStore cStore;
+	private CopyPatronStore cpStore;
 	private Patron currentPatron;
 	private Copy copy;
 	private ArrayList<Copy> copiesEntered;
 	private BorrowOutController outController;
 	
 
-	public BorrowInController(PatronStore ps, CopyStore cs) {
-		this.pStore = ps;
-		this.cStore = cs;
-		outController = new BorrowOutController(pStore, cStore);
+	public BorrowInController(CopyPatronStore cps) {
+		this.cpStore = cps;
+		outController = new BorrowOutController(cpStore);
 		copiesEntered = new ArrayList<Copy>();
 	}
 	
@@ -25,13 +23,13 @@ public class BorrowInController {
 	}
 
 	public Patron enterPatronForCheckIn(String patronID) {
-		this.currentPatron = pStore.fetchPatrons(patronID);
+		this.currentPatron = cpStore.fetchPatrons(patronID);
 		return this.currentPatron;
 	}
 
 	public Copy enterCopyGoingIn(String copyID) {
 		this.copiesEntered = outController.getCopiesEntered();
-		copy = this.cStore.fetchCopy(copyID);
+		copy = this.cpStore.fetchCopy(copyID);
 		
 		if (!copy.getForSale()) {
 			currentPatron.checkCopyIn(copy);

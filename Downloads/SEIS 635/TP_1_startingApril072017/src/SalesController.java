@@ -1,15 +1,13 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class SalesController {
-	private PatronStore pStore;
-	private CopyStore cStore;
+	private CopyPatronStore cpStore;
 	private Patron currentPatron;
 	private Copy copy;
 	private ArrayList<Copy> copiesEntered;
 	
-	public SalesController(PatronStore ps, CopyStore cs) {
-		this.pStore = ps;
-		this.cStore = cs;
+	public SalesController(CopyPatronStore cps) {
+		this.cpStore = cps;
 		this.copiesEntered = new ArrayList<Copy>();
 		}
 
@@ -22,12 +20,12 @@ public class SalesController {
 	}
 
 	public Patron enterPatronForSale(String patronID){
-		currentPatron = this.pStore.fetchPatrons(patronID);
+		currentPatron = this.cpStore.fetchPatrons(patronID);
 		return currentPatron; 
 	}
 
 	public Copy enterCopySelling(String copyID) {
-		copy = this.cStore.fetchCopy(copyID);
+		copy = this.cpStore.fetchCopy(copyID);
 		if (copy.getForSale()) {
 			this.copiesEntered.add(copy);
 			currentPatron.sellCopy(copy);

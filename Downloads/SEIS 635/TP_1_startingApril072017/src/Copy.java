@@ -1,3 +1,5 @@
+import java.text.*;
+import java.util.*;
 
 public class Copy
 {
@@ -5,8 +7,8 @@ public class Copy
 	private Patron outTo;
 	private double copyPrice;
 	private boolean forSale;
+	private Date duedate;
 
-	// following generated in Eclipse Source menu
 
 	public Patron getOutTo()
 	{
@@ -33,22 +35,35 @@ public class Copy
 		return forSale;
 	}
 	
+	public Date getDueDate() {
+		
+		duedate = setDueDate();
+		return duedate;
+	}
+	
 	public Copy(String cid)
 	{
 		this.copyID = cid;
 		
 	}
 
-	public Copy(String cid, double cPrice, boolean forSale)
+	public Copy(String cid, double cPrice, boolean forSale, Date duedate)
 	{
 		this.copyID = cid;
 		this.copyPrice = cPrice;
 		this.forSale = forSale;
+		this.duedate = duedate;
 	}
 
 	public String toString()
 	{
-		return "Copy w/id= " + this.copyID;
+		if(!forSale) {
+			return "Copy w/id= " + this.copyID + ", Date due: " + DateFormat();
+		} 
+		
+		else {
+			return "Copy w/id= " + this.copyID;
+		}
 	}
 
 	@Override
@@ -59,13 +74,47 @@ public class Copy
 
 		return ((Copy) o).getCopyID().equals(this.copyID); // yuck.
 	}
-
+	
+	public Date setDueDate(){
+	    Calendar calendar = Calendar.getInstance();
+	    calendar.add(Calendar.DAY_OF_YEAR, 120);
+		Date duedate = calendar.getTime();
+	    return duedate;
+	}
+	
+	public String DateFormat() {
+		   DateFormat dateFormat = new SimpleDateFormat(
+		       "EEEEEEEEEE, MMMMMMMMMM dd, yyyy", Locale.US);
+		    dateFormat.setTimeZone(TimeZone.getTimeZone("CST"));
+		   return dateFormat.format(getDueDate());
+	}
+	
+	public boolean checkCopyOverdue(){
+		Calendar calendar = Calendar.getInstance();
+		Date currentdate = calendar.getTime();
+		if (currentdate.after(getDueDate())) {
+			return true;
+		}
+		
+		else {
+			return false;
+		}
+		
+	}
+	
 	public static void main(String[] args)
 	{
-		Copy c1 = new Copy("0047", 30.98, false);
-		Patron p1 = new Patron("James", "007", false);
+		Copy c1 = new Copy("0047", 30.98, false, null);
+		Copy c2 = new Copy("0057", 31.02, false, null);
+		Patron p1 = new Patron("James", "007", false, 0.00);
 
 		System.out.println(c1);
 		System.out.println(p1);
+		System.out.println(p1.checkPatronOverdue(c1));
+		System.out.println(p1.checkPatronOverdue(c2));
+		System.out.println(c1.checkCopyOverdue());
+		
 	}
+	
+
 }
