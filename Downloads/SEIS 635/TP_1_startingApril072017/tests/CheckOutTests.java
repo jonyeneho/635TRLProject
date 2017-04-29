@@ -7,8 +7,7 @@ import java.util.ArrayList;
 public class CheckOutTests {
 	private String pid;
 	private String cid;
-	private PatronStore pStore;
-	private CopyStore cStore;
+	private CopyPatronStore cpStore;
 	private Patron p;
 	private Copy c;
 	private BorrowOutController outController;
@@ -16,11 +15,9 @@ public class CheckOutTests {
 
 	@Test
 	public void testCopiesCheckedOut() {
-		pStore = new PatronStore();
-		cStore = new CopyStore();
-		p = pStore.fetchPatrons(pid);
-		c = cStore.fetchCopy(cid);
-		outController = new BorrowOutController(pStore, cStore);
+		cpStore = new CopyPatronStore();
+		c = cpStore.fetchCopy(cid);
+		outController = new BorrowOutController(cpStore);
 		copiesEnteredforCheckout = outController.getCopiesEntered();
 
 		checkOutProcess("P101", "001");
@@ -51,18 +48,18 @@ public class CheckOutTests {
 		printLines();
 		
 		pid = "P107";
-		p = pStore.fetchPatrons(pid);
+		p = cpStore.fetchPatrons(pid);
 		assertNull(p);
 		
 		cid = "018";
-		c = cStore.fetchCopy(cid);
+		c = cpStore.fetchCopy(cid);
 		assertNull(c);	
 		
 	}
 	
 public void checkOutProcess(String pid, String cid) {
 		
-		c = cStore.fetchCopy(cid);
+		c = cpStore.fetchCopy(cid);
 		p = outController.enterPatronForCheckOut(pid);
 		
 		if (c == null && !cid.equals("0")) {

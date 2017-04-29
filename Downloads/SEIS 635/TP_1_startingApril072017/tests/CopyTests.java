@@ -8,11 +8,10 @@ public class CopyTests {
 	public void testCopyNotFound(){
 		String cid = "019";
 		String pid = "P102";	
-		PatronStore pStore = new PatronStore();
-		CopyStore cStore = new CopyStore();
-		Copy c = cStore.fetchCopy(cid);
-		Patron p = pStore.fetchPatrons(pid);
-		BorrowOutController outController = new BorrowOutController(pStore, cStore);
+		CopyPatronStore cpStore = new CopyPatronStore();
+		Copy c = cpStore.fetchCopy(cid);
+		Patron p = cpStore.fetchPatrons(pid);
+		BorrowOutController outController = new BorrowOutController(cpStore);
 		
 		outController.enterPatronForCheckOut(pid);
 				
@@ -27,9 +26,8 @@ public class CopyTests {
 		String cid = "002";
 		String pid = "P102";	
 		
-		PatronStore pStore = new PatronStore();
-		CopyStore cStore = new CopyStore();
-		BorrowOutController outController = new BorrowOutController(pStore, cStore);
+		CopyPatronStore cpStore = new CopyPatronStore();
+		BorrowOutController outController = new BorrowOutController(cpStore);
 		ArrayList<Copy> copiesEntered = outController.getCopiesEntered();
 		
 		outController.enterPatronForCheckOut(pid);
@@ -47,9 +45,8 @@ public class CopyTests {
 		String cid = "008";
 		String pid = "P102";	
 		
-		PatronStore pStore = new PatronStore();
-		CopyStore cStore = new CopyStore();
-		BorrowOutController outController = new BorrowOutController(pStore, cStore);
+		CopyPatronStore cpStore = new CopyPatronStore();
+		BorrowOutController outController = new BorrowOutController(cpStore);
 		ArrayList<Copy> copiesEntered = outController.getCopiesEntered();
 		
 		outController.enterPatronForCheckOut(pid);

@@ -7,9 +7,8 @@ public class PatronTests {
 	public void testPatronFound() {
 	
 		String pid = "P102";	
-		PatronStore pStore = new PatronStore();
-		CopyStore cStore = new CopyStore();
-		BorrowOutController outController = new BorrowOutController(pStore, cStore);
+		CopyPatronStore cpStore = new CopyPatronStore();
+		BorrowOutController outController = new BorrowOutController(cpStore);
 		
 		Patron p = outController.enterPatronForCheckOut(pid);
 		
@@ -26,10 +25,9 @@ public class PatronTests {
 	public void testPatronNotFound() {
 		
 		String pid = "P109";	
-		PatronStore pStore = new PatronStore();
-		CopyStore cStore = new CopyStore();
-		Patron p = pStore.fetchPatrons(pid);
-		BorrowOutController outController = new BorrowOutController(pStore, cStore);
+		CopyPatronStore cpStore = new CopyPatronStore();
+		Patron p = cpStore.fetchPatrons(pid);
+		BorrowOutController outController = new BorrowOutController(cpStore);
 	
 		outController.enterPatronForCheckOut(pid);
 		
@@ -42,12 +40,10 @@ public class PatronTests {
 	
 	@Test
 	public void testPatronHasHold() {
-		
+		CopyPatronStore cpStore = new CopyPatronStore();
 		String pid = "P106";	
-		PatronStore pStore = new PatronStore();
-		CopyStore cStore = new CopyStore();
-		Patron p = pStore.fetchPatrons(pid);
-		BorrowOutController outController = new BorrowOutController(pStore, cStore);
+		Patron p = cpStore.fetchPatrons(pid);
+		BorrowOutController outController = new BorrowOutController(cpStore);
 	
 		outController.enterPatronForCheckOut(pid);
 		

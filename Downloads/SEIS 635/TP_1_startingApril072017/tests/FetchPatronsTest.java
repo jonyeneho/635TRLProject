@@ -5,8 +5,7 @@ import java.util.ArrayList;
 public class FetchPatronsTest {
 	private String pid;
 	private String cid;
-	private PatronStore pStore;
-	private CopyStore cStore;
+	private CopyPatronStore cpStore;
 	private Patron p;
 	private Copy c;
 	private BorrowOutController outController;
@@ -17,13 +16,12 @@ public class FetchPatronsTest {
 
 	@Test
 	public void testFetchPatrons() {
-		pStore = new PatronStore();
-		cStore = new CopyStore();
-		p = pStore.fetchPatrons(pid);
-		c = cStore.fetchCopy(cid);
-		outController = new BorrowOutController(pStore, cStore);
-		inController = new BorrowInController(pStore, cStore);
-		sController = new SalesController(pStore, cStore);
+		cpStore = new CopyPatronStore();
+		p = cpStore.fetchPatrons(pid);
+		c = cpStore.fetchCopy(cid);
+		outController = new BorrowOutController(cpStore);
+		inController = new BorrowInController(cpStore);
+		sController = new SalesController(cpStore);
 		copiesEnteredforCheckout = outController.getCopiesEntered();
 		copiesEnteredforSales = sController.getCopiesEntered();
 
@@ -133,7 +131,7 @@ public class FetchPatronsTest {
 
 		String namecheck = "John";
 		pid = "P102";
-		assertEquals(pStore.fetchPatrons(pid).getName(), namecheck);
+		assertEquals(cpStore.fetchPatrons(pid).getName(), namecheck);
 	}
 
 	public void fetchPatronProcess(String pid) {
@@ -142,7 +140,7 @@ public class FetchPatronsTest {
 
 			StdOut.println("Enter a valid Patron ID, 0 to return to the Main Menu:");
 
-			Patron patronInfo = pStore.fetchPatrons(pid);
+			Patron patronInfo = cpStore.fetchPatrons(pid);
 			if (!pid.equals("0") && patronInfo == null) {
 				StdOut.println("Patron does not exist!");
 				break;
@@ -173,7 +171,7 @@ public class FetchPatronsTest {
 
 	public void checkOutProcess(String pid, String cid) {
 
-		c = cStore.fetchCopy(cid);
+		c = cpStore.fetchCopy(cid);
 		p = outController.enterPatronForCheckOut(pid);
 
 		if (c == null && !cid.equals("0")) {
@@ -223,7 +221,7 @@ public class FetchPatronsTest {
 	}
 
 	public void checkInProcess(String pid, String cid) {
-		c = cStore.fetchCopy(cid);
+		c = cpStore.fetchCopy(cid);
 		p = inController.enterPatronForCheckIn(pid);
 
 		if (c == null && !cid.equals("0")) {
@@ -280,7 +278,7 @@ public class FetchPatronsTest {
 
 	public void SalesProcess(String pid, String cid) {
 
-		c = cStore.fetchCopy(cid);
+		c = cpStore.fetchCopy(cid);
 		p = sController.enterPatronForSale(pid);
 
 		if (c == null && !cid.equals("0")) {
