@@ -382,12 +382,8 @@ public class TRLPJApp {
 					StdOut.println("Copy price: " + formatter.format(copyPrice) + ".");
 					StdOut.println("Enter the amount you wish to pay: ");
 					String numinput = StdIn.readString();
-					@SuppressWarnings("unused")
-					boolean parsable;
-
 					try {
 						double paymentamount = Double.parseDouble(numinput);
-						parsable = true;
 						if (paymentamount > copyPrice) {
 							StdOut.println("\nAmount exceeds copy price.\n" +
 									"Payment transaction not processed.\n");
@@ -420,7 +416,6 @@ public class TRLPJApp {
 					}
 
 					catch (NumberFormatException e) {
-						parsable = false;
 						StdOut.println("Input is not a valid amount.");
 						logger.log(Level.SEVERE, "Invalid price input.");
 						doSellCopy();
