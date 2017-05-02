@@ -38,3 +38,9 @@ Apr 29, 2017 9:57:10 AM TRLPJApp fetchPatrons
 INFO: Patron info.
 May 01, 2017 12:28:20 PM TRLPJApp mainMenu
 INFO: Main Menu Log.
+May 01, 2017 11:32:23 PM TRLPJApp mainMenu
+INFO: Main Menu Log.
+May 01, 2017 11:32:29 PM TRLPJApp helpandDocumentation
+INFO: Displayed Help and Documentation File.
+May 01, 2017 11:32:29 PM TRLPJApp mainMenu
+INFO: Main Menu Log.

@@ -2,6 +2,8 @@ import java.text.*;
 import java.util.*;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -492,14 +494,11 @@ public class TRLPJApp {
 				StdOut.println("Patron: " + name + ", Overdue fines: " + formatter.format(fines) + ".");
 				StdOut.println("Enter the amount you wish to pay: ");
 				String numinput = StdIn.readString();
-				@SuppressWarnings("unused")
-				boolean parsable;
-
+	
 				try {
 					double paymentamount = Double.parseDouble(numinput);
-					parsable = true;
 					if (paymentamount > fines) {
-						StdOut.println("\nAmount exceeds overdue fine amount\n" +
+						StdOut.println("\nAmount exceeds overdue fine amount.\n" +
 								"Payment transaction not processed.\n");
 						logger.log(Level.WARNING, "Payment too much.");
 					} 
@@ -511,7 +510,7 @@ public class TRLPJApp {
 					}
 					
 					else {
-						double newfines = fines - paymentamount;
+						double newfines = fineRound((fines - paymentamount),2);
 						patronInfo.setOverdueFines(newfines);
 						fines = patronInfo.getOverdueFines();
 						StdOut.println("Payment transaction successful.");
@@ -522,7 +521,6 @@ public class TRLPJApp {
 				}
 
 				catch (NumberFormatException e) {
-					parsable = false;
 					StdOut.println("Input is not a valid amount.");
 				}
 
@@ -531,6 +529,14 @@ public class TRLPJApp {
 
 		StdOut.println("Returning to the Main Menu .....");
 		mainMenu();
+	}
+	
+	public static double fineRound(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
+
+	    BigDecimal bd = new BigDecimal(value);
+	    bd = bd.setScale(places, RoundingMode.HALF_UP);
+	    return bd.doubleValue();
 	}
 
 	public static void setHold(String pid) {
@@ -541,8 +547,6 @@ public class TRLPJApp {
 			StdOut.println("Enter a valid Patron ID, 0 to return to the Main Menu:");
 			patronID = StdIn.readString();
 			Patron patronInfo = cpStore.fetchPatrons(patronID);
-			@SuppressWarnings("unused")
-			Copy copyt = new Copy("1002");
 			
 			if (!patronID.equals("0") && patronInfo == null) {
 				StdOut.println("Patron does not exist!");
@@ -555,7 +559,7 @@ public class TRLPJApp {
 				boolean hasHold = patronInfo.getHasHold();
 				String yesorno = hasHold ? " has a hold and cannot check out copies." 
 						: " does not have any holds and can check out copies.";
-				logger.log(Level.WARNING, "Patron has a hold and cannot check out.");
+				logger.log(Level.INFO, "Patron's current hold status.");
 				
 				StdOut.println(patronInfo.getName() + yesorno);
 				

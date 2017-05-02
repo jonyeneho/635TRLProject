@@ -152,6 +152,9 @@ public class Patron
 	
 	public void setOverdueFines(double overdueFines) {
 		this.overdueFines = overdueFines;
+		if (this.overdueFines == 0) {
+			turnHoldOff();
+		}
 	}
 	
 	public double getOverdueFines() {
