@@ -612,7 +612,7 @@ public class TRLPJApp {
 	public static void helpandDocumentation() {
 		init();
 	    Charset encoding = Charset.forName("UTF-8");
-	    Path file = Paths.get("files/trlpjapphelpfile.txt");  
+	    Path file = Paths.get("files/HOWTO.txt");  
 	  try(BufferedReader br = Files.newBufferedReader(file, encoding)) {
 	        String line;
 	        while((line = br.readLine()) != null) {
