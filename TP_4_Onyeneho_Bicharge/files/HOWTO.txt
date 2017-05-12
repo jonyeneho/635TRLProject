@@ -1,12 +1,12 @@
 ﻿Welcome to the Textbook Rental Library Project Application (TRLPJApp).
 		
-There are currently six Patrons registered and ten copies checked into the system.
+There are currently six Patrons registered and ten Copies checked into the system.
 Select "P101" as Patron for Ceasey. Ceasey currently does not have a hold.
 Select "P102" as Patron for John. John currently does not have a hold.
 Select "P103" as Patron for Casidy. Casidy currently does not have a hold.
 Select "P104" as Patron for Bancy. Bancy currently does have a hold.
-Select "P105" as Patron for Casidy. Ceasey currently does have a hold.
-Select "P106" as Patron for Casidy. Ceasey currently does have a hold.
+Select "P105" as Patron for Daniels. Daniels currently does have a hold.
+Select "P106" as Patron for Zorro. Zorro currently does have a hold.
 		
 Select from these copies added into the system:
 Copy "001", "Spanish" is for checkout only.
