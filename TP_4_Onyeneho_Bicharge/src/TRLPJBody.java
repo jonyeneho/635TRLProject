@@ -540,7 +540,7 @@ public class TRLPJBody {
 					else if (paymentamount <= 0) {
 						StdOut.println("\nPayment amount is less than or equal to $0.00.\n" +
 								"Payment transaction not processed.\n");
-						logger.log(Level.WARNING, "Invalid fine payment.");
+						logger.log(Level.WARNING, "Invalid Fine Payment.");
 					}
 					
 					else {
