@@ -274,7 +274,7 @@ public class TRLPJBody {
 
 			if (cinfo == null && !copyID.equals("0")) {
 				StdOut.println("Copy does not exist! Cannot check in.");
-				logger.log(Level.WARNING, "Invalid copy input.");
+				logger.log(Level.WARNING, "Invalid Copy Input.");
 			}
 
 			else if (copyID.equals("0")) {
