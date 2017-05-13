@@ -3,12 +3,13 @@
 /BorrowInController.class
 /BorrowOutController.class
 /CheckInTests.class
+/CheckOutTests.class
 /Copy.class
 /CopyPatronStore.class
 /Patron.class
 /SalesController.class
 /TRLPJApp.class
-/CheckOutTests.class
+/TRLPJBody.class
 /CopyTests.class
 /DateTests.class
 /FetchPatronsTest.class
@@ -16,4 +17,3 @@
 /PatronTests.class
 /PayFinesTest.class
 /SetHoldTest.class
-/TRLPJBody.class

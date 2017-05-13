@@ -37,16 +37,16 @@ public class TRLPJBody {
 		inController = new BorrowInController(cpStore);
 		sController = new SalesController(cpStore);
 		copiesEntered = new ArrayList<Copy>();
-		StdOut.println("Welcome to TRLPJApp....:\n");
+		StdOut.println("Welcome to the Textbook Rental Library Project Application (TRLPJApp)!\n");
 		mainMenu();
 	}
 	public static void mainMenu() {
 		StdOut.println("Main Menu");
 		StdOut.println("~~~~~~~~~~~~~~~");
 		StdOut.println("Select option:\n");
-		StdOut.println("1 => Begin Checkout transaction");
-		StdOut.println("2 => Begin Check-in transaction");
-		StdOut.println("3 => Begin Sales transaction");
+		StdOut.println("1 => Begin Checkout Transaction");
+		StdOut.println("2 => Begin Check-in Transaction");
+		StdOut.println("3 => Begin Sales Transaction");
 		StdOut.println("4 => Display Patron Info");
 		StdOut.println("5 => Pay Overdue Fines");
 		StdOut.println("6 => Change Patron Hold Status");
@@ -403,8 +403,8 @@ public class TRLPJBody {
 				else if (copyselling) {
 					NumberFormat formatter = NumberFormat.getCurrencyInstance();
 					formatter.setMinimumIntegerDigits(1);
-					StdOut.println("Copy price: " + formatter.format(copyPrice) + ".");
-					StdOut.println("Enter the amount you wish to pay: ");
+					StdOut.println("Copy Price: " + formatter.format(copyPrice) + ".");
+					StdOut.println("Enter the amount you wish to pay (in USD): ");
 					String numinput = StdIn.readString();
 					try {
 						double paymentamount = Double.parseDouble(numinput);
@@ -501,20 +501,28 @@ public class TRLPJBody {
 			patronID = StdIn.readString();
 			Patron p = cpStore.fetchPatrons(patronID);
 			
-
-			if (!patronID.equals("0") && p == null) {
+			boolean patrondoesnotexist = !patronID.equals("0") && p == null;
+			boolean nooverduefines = !patronID.equals("0") && p != null && p.getOverdueFines() <= 0;
+			boolean overduefines = !patronID.equals("0") && p != null && p.getOverdueFines() > 0;
+			
+			if (patrondoesnotexist) {
 				StdOut.println("Patron does not exist!");
 				logger.log(Level.WARNING, "Invalid Patron Input.");
 				
 			}
+			
+			else if (nooverduefines) {
+				StdOut.println("Patron does not have any overdue fines.");
+				logger.log(Level.INFO, "No Overdue Fines.");
+			}
 
-			else if (!patronID.equals("0") && p != null) {
+			else if (overduefines) {
 				NumberFormat formatter = NumberFormat.getCurrencyInstance();
 				formatter.setMinimumIntegerDigits(1);
 				String name = p.getName();
 				double fines = p.getOverdueFines();
 				StdOut.println("Patron: " + name + ", Overdue fines: " + formatter.format(fines) + ".");
-				StdOut.println("Enter the amount you wish to pay: ");
+				StdOut.println("Enter the amount you wish to pay (in USD): ");
 				String numinput = StdIn.readString();
 	
 				try {

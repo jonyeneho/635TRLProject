@@ -1,2 +1,34 @@
 May 12, 2017 7:30:23 AM TRLPJBody mainMenu
 INFO: Main Menu Log.
+May 12, 2017 11:49:15 AM TRLPJBody mainMenu
+INFO: Main Menu Log.
+May 12, 2017 11:50:33 AM TRLPJBody doCheckOut
+SEVERE: Exited Checkout Session due to hold.
+May 12, 2017 11:50:33 AM TRLPJBody mainMenu
+INFO: Main Menu Log.
+May 12, 2017 11:51:31 AM TRLPJBody doCheckOut
+SEVERE: Exited Checkout Session due to hold.
+May 12, 2017 11:51:31 AM TRLPJBody mainMenu
+INFO: Main Menu Log.
+May 12, 2017 11:51:51 AM TRLPJBody mainMenu
+INFO: Menu Choice Picked.
+May 12, 2017 10:14:35 PM TRLPJBody mainMenu
+INFO: Main Menu Log.
+May 12, 2017 10:14:53 PM TRLPJBody doCheckOut
+INFO: Patron hold is correct.
+May 12, 2017 10:14:53 PM TRLPJBody doCheckOut
+INFO: Issuing Copies to Patron.
+May 12, 2017 10:14:56 PM TRLPJBody doCheckOut
+INFO: Copy Checked Out.
+May 12, 2017 10:14:58 PM TRLPJBody doCheckOut
+WARNING: Copy for sale only.
+May 12, 2017 10:15:01 PM TRLPJBody doCheckOut
+INFO: Copy Checked Out.
+May 12, 2017 10:15:02 PM TRLPJBody doCheckOut
+INFO: Exited Checkout Voluntarily.
+May 12, 2017 10:15:02 PM TRLPJBody mainMenu
+INFO: Main Menu Log.
+May 12, 2017 10:15:07 PM TRLPJBody helpandDocumentation
+INFO: Displayed Help and Documentation File.
+May 12, 2017 10:15:07 PM TRLPJBody mainMenu
+INFO: Main Menu Log.

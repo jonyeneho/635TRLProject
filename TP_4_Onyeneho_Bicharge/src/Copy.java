@@ -72,7 +72,7 @@ public class Copy
 		} 
 		
 		else {
-			return "Copy w/id= " + this.copyID;
+			return "Copy w/id= " + this.copyID + ", \"" + this.title + "\"";
 		}
 	}
 

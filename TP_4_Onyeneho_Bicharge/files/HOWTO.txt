@@ -35,7 +35,8 @@ H => "Help and Documentation"
 Checkouts:
 All checkouts must be turn in 120 days after the checkout was processed. A hold on the patron and a fine of $20.00 will be assessed.
 		
-Patrons with holds on their record will not be able to checkout any additional copies until Patron's outstanding copies are turned in and Patron's outstanding balance is at $0.00.
+Patrons with holds on their record will not be able to checkout any additional copies until Patron's outstanding copies are turned in 
+and Patron's outstanding balance is at $0.00.
 		
 Patrons with holds may be able to make sales and check-in outstanding copies.
 		
@@ -44,6 +45,12 @@ Sales:
 All sales must be made with exact change. No exceptions. Sales not made with exact change will not be processed.
 		
 Patrons with holds on their record will be able to purchase copies that are for sale.
+
+Pay Overdue Fines:
+
+Patrons with overdue fines greater than $0.00 may pay fines through the Pay Overdue Fines process. 
+
+A Patron's hold will be removed when their outstanding balance reaches $0.00. 
 		
 Change Holds:
 	
