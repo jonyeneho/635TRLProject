@@ -72,19 +72,23 @@ public class TRLPJBody {
 				doSellCopy();
 				return;
 			case "4":
+				StdOut.println("Displaying Patron Info .....");
 				fetchPatrons("String");
 				quitting = true;
 				return;
 			case "5":
+				StdOut.println("Paying Overdue Fines .....");
 				payFines("String");
 				quitting = true;
 				return;
 			case "6":
+				StdOut.println("Changing Patron Hold Status .....");
 				setHold("String");
 				quitting = true;
 				return;
 			case "H":
 			case "h":
+				StdOut.println("Displaying Help and Documentation .....");
 				helpandDocumentation();
 				quitting = true;
 				return;
